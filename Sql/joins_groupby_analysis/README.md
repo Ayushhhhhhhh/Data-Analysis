@@ -13,5 +13,3 @@ This mini project demonstrates SQL joins and aggregate functions using two sampl
 ### Files
 - `sample_data.sql`: Schema and sample data for customers and orders
 - `joins_groupby.sql`: Join and group queries using real-world structure
-
-No starter or roadmap references included.
