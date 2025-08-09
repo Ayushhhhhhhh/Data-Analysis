@@ -39,7 +39,7 @@ def load_model(model_path, columns_path):
         return None, None
 
 # --- Load Model and Data ---
-model, model_columns = load_model('src/assets/churn_model.joblib', 'src/assets/model_columns.joblib')
+model, model_columns = load_model('./src/assets/churn_model.joblib', 'src/assets/model_columns.joblib')
 # This path assumes you have a 'data' folder in the same directory as app.py
 df = load_data('data/telecom_churn_data.csv') 
 
