@@ -24,7 +24,7 @@ def load_data(path):
         return df
     except FileNotFoundError:
         st.error(f"Error: The data file was not found at {path}.")
-        st.info("Please ensure you have the 'telecom_churn_data.csv' file in a 'data' subfolder.")
+        st.info("Please ensure you have the 'telecom_churn_data.csv' file in a 'data' subfolder inside your project directory.")
         return None
 
 @st.cache_resource
@@ -132,7 +132,7 @@ if model is not None and model_columns is not None:
             st.progress(prediction_proba)
 
             if prediction_proba > 0.5:
-                st.error(f"High Risk: There is a {prediction_proba:.1%} probability of churn.", icon="�")
+                st.error(f"High Risk: There is a {prediction_proba:.1%} probability of churn.", icon="🚨")
             elif prediction_proba > 0.25:
                 st.warning(f"Moderate Risk: There is a {prediction_proba:.1%} probability of churn.", icon="⚠️")
             else:
