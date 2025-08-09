@@ -132,7 +132,7 @@ if model is not None and model_columns is not None:
             st.progress(prediction_proba)
 
             if prediction_proba > 0.5:
-                st.error(f"High Risk: There is a {prediction_proba:.1%} probability of churn.", icon="🚨")
+                st.error(f"High Risk: There is a {prediction_proba:.1%} probability of churn.", icon="�")
             elif prediction_proba > 0.25:
                 st.warning(f"Moderate Risk: There is a {prediction_proba:.1%} probability of churn.", icon="⚠️")
             else:
