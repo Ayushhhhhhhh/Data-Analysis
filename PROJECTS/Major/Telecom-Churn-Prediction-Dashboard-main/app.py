@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 import joblib
 import plotly.express as px
+import numpy as np
 
 # --- Page Configuration ---
 st.set_page_config(
     page_title="ChurnGuard Telecom Dashboard",
-    page_icon="�",
+    page_icon="📡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -17,8 +18,9 @@ def load_data(path):
     """Loads the telecom churn data for visualization."""
     try:
         df = pd.read_csv(path)
-        # The TotalCharges column might have spaces, convert to numeric
+        # The TotalCharges column might have spaces, convert to numeric, and fill NaNs
         df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
+        df['TotalCharges'].fillna(df['TotalCharges'].median(), inplace=True)
         return df
     except FileNotFoundError:
         st.error(f"Error: The data file was not found at {path}.")
@@ -43,13 +45,13 @@ df = load_data('data/telecom_churn_data.csv')
 
 # --- UI Layout ---
 st.title("📡 ChurnGuard: Telecom Customer Churn Dashboard")
-st.markdown("A Data Analysis Project by **Ayush Singhal**")
+st.markdown("A Data Science Project by **Ayush Singhal**")
 
 # --- Key Metrics ---
 if df is not None:
     total_customers = df.shape[0]
     churned_customers = df[df['Churn'] == 'Yes'].shape[0]
-    churn_rate = (churned_customers / total_customers) * 100
+    churn_rate = (churned_customers / total_customers) * 100 if total_customers > 0 else 0
     avg_tenure = df['tenure'].mean()
 
     st.markdown("### Key Metrics")
